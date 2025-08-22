@@ -8,7 +8,7 @@
  * - State management
  */
 
-// Import modülleri
+// Import modülleri - Railway path fix
 import { GridManager } from './grid-manager.js';
 import { CameraHandler } from './camera-handler.js';
 import { YOLOSimulation } from './yolo-simulation.js';

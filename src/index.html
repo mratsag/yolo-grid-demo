@@ -273,10 +273,60 @@
         </div>
     </footer>
 
-    <!-- JavaScript Modules -->
-    <script type="module" src="src/js/main.js"></script>
-    <script type="module" src="src/components/grid-overlay.js"></script>
-    <script type="module" src="src/components/detection-panel.js"></script>
-    <script type="module" src="src/components/tutorial-steps.js"></script>
+    <!-- JavaScript Modules - Updated paths for Railway -->
+    <script>
+        // Check if modules load properly
+        console.log('🎯 YOLO Grid Demo - Starting...');
+        
+        // Import modules after DOM is loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                console.log('📦 Loading modules...');
+                
+                // Import main application
+                const { YOLOGridApp } = await import('./src/js/main.js');
+                
+                // Start the application
+                window.yoloGridApp = new YOLOGridApp();
+                await window.yoloGridApp.init();
+                
+                console.log('✅ YOLO Grid Demo loaded successfully!');
+                
+            } catch (error) {
+                console.error('❌ Module loading error:', error);
+                
+                // Fallback: Show error message
+                document.body.innerHTML = `
+                    <div style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-height: 100vh;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+                        color: white;
+                        text-align: center;
+                        font-family: Inter, sans-serif;
+                        padding: 20px;
+                    ">
+                        <div>
+                            <h1>🎯 YOLO Grid Demo</h1>
+                            <p>Module loading error. Please refresh the page.</p>
+                            <button onclick="location.reload()" style="
+                                background: #8b5cf6;
+                                color: white;
+                                border: none;
+                                padding: 12px 24px;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                margin-top: 20px;
+                            ">
+                                🔄 Refresh Page
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
 </body>
 </html>
