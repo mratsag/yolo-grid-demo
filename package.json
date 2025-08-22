@@ -1,0 +1,53 @@
+{
+  "name": "yolo-grid-demo",
+  "version": "1.0.0",
+  "description": "YOLO Grid mantığını interaktif olarak öğreten web tabanlı demo uygulaması",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "npx live-server src --port=3000",
+    "build": "npm run copy-assets",
+    "copy-assets": "cp -r src/* deploy/",
+    "test": "echo \"Test yapılandırması eklenecek\" && exit 0",
+    "deploy": "npm run build && gh-pages -d deploy",
+    "dev": "npx live-server src --port=3000 --watch=src"
+  },
+  "keywords": [
+    "yolo",
+    "computer-vision",
+    "machine-learning",
+    "object-detection",
+    "educational",
+    "interactive",
+    "tensorflow",
+    "javascript",
+    "webcam",
+    "grid-system"
+  ],
+  "author": {
+    "name": "Murat Sağ",
+    "url": "https://www.muratsag.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mratsag/yolo-grid-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mratsag/yolo-grid-demo/issues"
+  },
+  "homepage": "https://mratsag.github.io/yolo-grid-demo",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "gh-pages": "^6.0.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ]
+}
