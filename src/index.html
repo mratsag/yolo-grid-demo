@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOLO Grid Demo</title>
+    <meta name="description" content="YOLO algoritmasının grid mantığını interaktif olarak öğreten demo">
+    <meta name="keywords" content="YOLO, machine learning, computer vision, object detection, grid">
+    <meta name="author" content="Murat Sağ">
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    <title>YOLO Grid Demo - "Göz Açıp Kapayıncaya Kadar"</title>
     
     <!-- CSS Files -->
-    <link rel="stylesheet" href="src/css/main.css">
-    <link rel="stylesheet" href="src/css/grid.css">
-    <link rel="stylesheet" href="src/css/animations.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/animations.css">
     
     <!-- Tutorial Fix CSS -->
     <style>
@@ -57,12 +58,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">>
+    
     <!-- TensorFlow.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.10.0/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
 </head>
 <body>
-    <!-- Content from src/index.html -->
     <!-- Header Section -->
     <header class="header">
         <div class="container">
@@ -273,60 +276,10 @@
         </div>
     </footer>
 
-    <!-- JavaScript Modules - Updated paths for Railway -->
-    <script>
-        // Check if modules load properly
-        console.log('🎯 YOLO Grid Demo - Starting...');
-        
-        // Import modules after DOM is loaded
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                console.log('📦 Loading modules...');
-                
-                // Import main application
-                const { YOLOGridApp } = await import('./src/js/main.js');
-                
-                // Start the application
-                window.yoloGridApp = new YOLOGridApp();
-                await window.yoloGridApp.init();
-                
-                console.log('✅ YOLO Grid Demo loaded successfully!');
-                
-            } catch (error) {
-                console.error('❌ Module loading error:', error);
-                
-                // Fallback: Show error message
-                document.body.innerHTML = `
-                    <div style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        min-height: 100vh;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-                        color: white;
-                        text-align: center;
-                        font-family: Inter, sans-serif;
-                        padding: 20px;
-                    ">
-                        <div>
-                            <h1>🎯 YOLO Grid Demo</h1>
-                            <p>Module loading error. Please refresh the page.</p>
-                            <button onclick="location.reload()" style="
-                                background: #8b5cf6;
-                                color: white;
-                                border: none;
-                                padding: 12px 24px;
-                                border-radius: 8px;
-                                cursor: pointer;
-                                margin-top: 20px;
-                            ">
-                                🔄 Refresh Page
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-        });
-    </script>
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="components/grid-overlay.js"></script>
+    <script type="module" src="components/detection-panel.js"></script>
+    <script type="module" src="components/tutorial-steps.js"></script>
 </body>
 </html>
