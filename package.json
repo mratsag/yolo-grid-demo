@@ -4,12 +4,11 @@
   "description": "YOLO Grid mantığını interaktif olarak öğreten web tabanlı demo uygulaması",
   "main": "src/index.html",
   "scripts": {
-    "start": "npx live-server src --port=3000",
-    "build": "npm run copy-assets",
-    "copy-assets": "cp -r src/* deploy/",
-    "test": "echo \"Test yapılandırması eklenecek\" && exit 0",
-    "deploy": "npm run build && gh-pages -d deploy",
-    "dev": "npx live-server src --port=3000 --watch=src"
+    "start": "npx serve . -p $PORT --single",
+    "dev": "npx live-server src --port=3000 --watch=src",
+    "build": "echo 'Static site - no build needed'",
+    "serve": "npx serve . -p 3000 --single",
+    "railway": "npx serve . -p $PORT --cors"
   },
   "keywords": [
     "yolo",
@@ -21,7 +20,8 @@
     "tensorflow",
     "javascript",
     "webcam",
-    "grid-system"
+    "grid-system",
+    "railway-app"
   ],
   "author": {
     "name": "Murat Sağ",
@@ -35,15 +35,16 @@
   "bugs": {
     "url": "https://github.com/mratsag/yolo-grid-demo/issues"
   },
-  "homepage": "https://mratsag.github.io/yolo-grid-demo",
-  "devDependencies": {
-    "live-server": "^1.2.2",
-    "gh-pages": "^6.0.0"
+  "homepage": "https://yolo-grid-demo.up.railway.app",
+  "dependencies": {
+    "serve": "^14.2.1"
   },
-  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "browserslist": [
     "last 2 versions",
