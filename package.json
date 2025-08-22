@@ -4,11 +4,11 @@
   "description": "YOLO Grid mantığını interaktif olarak öğreten web tabanlı demo uygulaması",
   "main": "src/index.html",
   "scripts": {
-    "start": "npx serve . -p $PORT --single",
+    "start": "npx serve src -p $PORT --cors",
     "dev": "npx live-server src --port=3000 --watch=src",
     "build": "echo 'Static site - no build needed'",
-    "serve": "npx serve . -p 3000 --single",
-    "railway": "npx serve . -p $PORT --cors"
+    "serve": "npx serve src -p 3000",
+    "railway": "npx serve src -p $PORT --cors"
   },
   "keywords": [
     "yolo",
@@ -30,10 +30,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mratsag/yolo-grid-demo.git"
+    "url": "https://github.com/[kullanici-adi]/yolo-grid-demo.git"
   },
   "bugs": {
-    "url": "https://github.com/mratsag/yolo-grid-demo/issues"
+    "url": "https://github.com/[kullanici-adi]/yolo-grid-demo/issues"
   },
   "homepage": "https://yolo-grid-demo.up.railway.app",
   "dependencies": {
