@@ -1,0 +1,707 @@
+/* ===== GRID SYSTEM STYLES ===== */
+
+/* Grid Container */
+.grid-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Main Grid Overlay */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Grid Lines */
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    gap: 0;
+}
+
+/* Grid Cell Base Style */
+.grid-cell {
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    background: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Grid Cell States */
+.grid-cell--inactive {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+.grid-cell--active {
+    background: rgba(102, 126, 234, 0.3);
+    border-color: rgba(102, 126, 234, 0.8);
+    box-shadow: inset 0 0 10px rgba(102, 126, 234, 0.4);
+}
+
+.grid-cell--detecting {
+    background: rgba(255, 193, 7, 0.4);
+    border-color: rgba(255, 193, 7, 0.8);
+    animation: detecting-pulse 1s infinite;
+    box-shadow: inset 0 0 15px rgba(255, 193, 7, 0.6);
+}
+
+.grid-cell--detected {
+    background: rgba(40, 167, 69, 0.4);
+    border-color: rgba(40, 167, 69, 0.8);
+    box-shadow: inset 0 0 15px rgba(40, 167, 69, 0.6);
+    animation: detected-glow 2s ease-in-out;
+}
+
+.grid-cell--confident {
+    background: rgba(220, 53, 69, 0.4);
+    border-color: rgba(220, 53, 69, 0.8);
+    box-shadow: inset 0 0 20px rgba(220, 53, 69, 0.6);
+    animation: confident-pulse 0.8s infinite alternate;
+}
+
+/* Grid Size Variations */
+.grid-7x7 { 
+    grid-template-columns: repeat(7, 1fr); 
+    grid-template-rows: repeat(7, 1fr); 
+}
+
+.grid-13x13 { 
+    grid-template-columns: repeat(13, 1fr); 
+    grid-template-rows: repeat(13, 1fr); 
+}
+
+.grid-19x19 { 
+    grid-template-columns: repeat(19, 1fr); 
+    grid-template-rows: repeat(19, 1fr); 
+}
+
+/* Grid Cell Numbers for Different Sizes */
+.grid-7x7 .grid-cell { 
+    font-size: 0.6rem; 
+}
+
+.grid-13x13 .grid-cell { 
+    font-size: 0.5rem; 
+}
+
+.grid-19x19 .grid-cell { 
+    font-size: 0.4rem; 
+}
+
+/* Confidence Score Display */
+.confidence-score {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    line-height: 1;
+    min-width: 20px;
+    text-align: center;
+}
+
+.confidence-score--high {
+    background: rgba(220, 53, 69, 0.9);
+}
+
+.confidence-score--medium {
+    background: rgba(255, 193, 7, 0.9);
+}
+
+.confidence-score--low {
+    background: rgba(108, 117, 125, 0.9);
+}
+
+/* Detection Boundaries */
+.detection-boundary {
+    position: absolute;
+    border: 3px solid;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.detection-boundary--person {
+    border-color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.detection-boundary--car {
+    border-color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.detection-boundary--cat {
+    border-color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.detection-boundary--dog {
+    border-color: #fd7e14;
+    background: rgba(253, 126, 20, 0.1);
+}
+
+.detection-boundary--bottle {
+    border-color: #6f42c1;
+    background: rgba(111, 66, 193, 0.1);
+}
+
+.detection-boundary--cell-phone {
+    border-color: #e83e8c;
+    background: rgba(232, 62, 140, 0.1);
+}
+
+.detection-boundary--laptop {
+    border-color: #20c997;
+    background: rgba(32, 201, 151, 0.1);
+}
+
+.detection-boundary--book {
+    border-color: #6c757d;
+    background: rgba(108, 117, 125, 0.1);
+}
+
+.detection-boundary--cup {
+    border-color: #17a2b8;
+    background: rgba(23, 162, 184, 0.1);
+}
+
+.detection-boundary--default {
+    border-color: #6c757d;
+    background: rgba(108, 117, 125, 0.1);
+}
+
+/* Detection Label */
+.detection-label {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    white-space: nowrap;
+    backdrop-filter: blur(5px);
+}
+
+/* Grid Preview (for intro section) */
+.grid-preview {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1px;
+    background: #667eea;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.grid-preview-cell {
+    background: rgba(255, 255, 255, 0.9);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: #667eea;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.grid-preview-cell:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: scale(1.1);
+}
+
+.grid-preview-cell--highlight {
+    background: rgba(102, 126, 234, 0.4);
+    color: white;
+    animation: preview-highlight 2s infinite;
+}
+
+/* Center Lines for YOLO visualization */
+.grid-center-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.center-line--vertical {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateX(-50%);
+}
+
+.center-line--horizontal {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateY(-50%);
+}
+
+/* Grid Information Tooltip */
+.grid-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.grid-tooltip.show {
+    opacity: 1;
+}
+
+.grid-tooltip::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Grid Processing Indicator */
+.processing-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 25;
+    transition: all 0.3s ease;
+}
+
+.processing-indicator.active {
+    background: rgba(102, 126, 234, 0.4);
+    animation: processing-spin 1s linear infinite;
+}
+
+.processing-indicator::before {
+    content: '🧠';
+    font-size: 1.2rem;
+}
+
+/* Grid Statistics Mini Display */
+.grid-mini-stats {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    z-index: 25;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mini-stat {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.mini-stat-value {
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* Grid Cell Index Display */
+.grid-cell-index {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* Grid Heatmap Mode */
+.grid-heatmap .grid-cell {
+    background: var(--heat-color, rgba(0, 0, 0, 0.1));
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Detection Overlay for Multiple Objects */
+.detection-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* Object Detection Box */
+.object-detection-box {
+    position: absolute;
+    border: 3px solid;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    animation: object-detected-pulse 2s ease-in-out infinite;
+}
+
+.object-detection-box::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -25px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.object-detection-box::after {
+    content: attr(data-confidence);
+    position: absolute;
+    top: -25px;
+    right: 0;
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+/* Grid Performance Metrics */
+.grid-performance {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    z-index: 25;
+    backdrop-filter: blur(10px);
+}
+
+.performance-metric {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.performance-metric:last-child {
+    margin-bottom: 0;
+}
+
+.metric-value {
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes detecting-pulse {
+    0%, 100% { 
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes detected-glow {
+    0% {
+        box-shadow: inset 0 0 15px rgba(40, 167, 69, 0.6);
+    }
+    50% {
+        box-shadow: inset 0 0 25px rgba(40, 167, 69, 0.8), 0 0 10px rgba(40, 167, 69, 0.4);
+    }
+    100% {
+        box-shadow: inset 0 0 15px rgba(40, 167, 69, 0.6);
+    }
+}
+
+@keyframes confident-pulse {
+    from {
+        box-shadow: inset 0 0 20px rgba(220, 53, 69, 0.6);
+    }
+    to {
+        box-shadow: inset 0 0 30px rgba(220, 53, 69, 0.9), 0 0 15px rgba(220, 53, 69, 0.5);
+    }
+}
+
+@keyframes preview-highlight {
+    0%, 100% {
+        background: rgba(102, 126, 234, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        background: rgba(102, 126, 234, 0.7);
+        transform: scale(1.1);
+    }
+}
+
+@keyframes processing-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes object-detected-pulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+/* Grid Wave Effect */
+@keyframes grid-wave {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
+/* Grid Scan Effect */
+.grid-scan-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    animation: scan-line 3s linear infinite;
+    z-index: 30;
+}
+
+@keyframes scan-line {
+    0% {
+        top: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Grid Focus Effect */
+.grid-focus-mode {
+    filter: blur(1px);
+    transition: filter 0.5s ease;
+}
+
+.grid-focus-mode .grid-cell--detected,
+.grid-focus-mode .grid-cell--confident {
+    filter: blur(0);
+}
+
+/* Detection Path Visualization */
+.detection-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.path-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    animation: path-trace 1s ease-in-out;
+}
+
+@keyframes path-trace {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 0;
+    }
+}
+
+/* ===== RESPONSIVE GRID ADJUSTMENTS ===== */
+
+@media (max-width: 768px) {
+    .grid-cell {
+        font-size: 0.5rem;
+    }
+    
+    .grid-7x7 .grid-cell { 
+        font-size: 0.5rem; 
+    }
+    
+    .grid-13x13 .grid-cell { 
+        font-size: 0.4rem; 
+    }
+    
+    .grid-19x19 .grid-cell { 
+        font-size: 0.3rem; 
+    }
+    
+    .confidence-score {
+        font-size: 0.5rem;
+        padding: 1px 2px;
+    }
+    
+    .detection-label {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+    }
+    
+    .grid-mini-stats {
+        font-size: 0.6rem;
+        padding: 6px 8px;
+    }
+    
+    .processing-indicator {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .processing-indicator::before {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-cell {
+        font-size: 0.4rem;
+    }
+    
+    .grid-7x7 .grid-cell { 
+        font-size: 0.4rem; 
+    }
+    
+    .grid-13x13 .grid-cell { 
+        font-size: 0.3rem; 
+    }
+    
+    .grid-19x19 .grid-cell { 
+        font-size: 0.25rem; 
+    }
+    
+    .confidence-score {
+        font-size: 0.4rem;
+        padding: 1px;
+    }
+    
+    .detection-label {
+        font-size: 0.5rem;
+        padding: 1px 3px;
+    }
+    
+    .grid-mini-stats {
+        font-size: 0.5rem;
+        padding: 4px 6px;
+    }
+    
+    .detection-boundary {
+        border-width: 2px;
+    }
+}
+
+/* ===== SPECIAL EFFECTS ===== */
+
+/* Grid Wave Effect */
+.grid-wave-effect .grid-cell {
+    animation: grid-wave var(--delay, 0s) 2s ease-in-out infinite;
+}
+
+/* Grid Focus Effect */
+.grid-focus-mode .grid-cell:not(.grid-cell--detected):not(.grid-cell--confident) {
+    opacity: 0.3;
+    filter: blur(1px);
+}
+
+/* Performance optimizations */
+.grid-overlay,
+.grid-lines,
+.grid-cell {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
