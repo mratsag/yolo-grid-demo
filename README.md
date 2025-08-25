@@ -112,7 +112,7 @@ Bu demo ile öğrenebilecekleriniz:
 
 ## 🚀 Demo
 
-[🎮 Canlı Demo'yu Deneyin](https://[kullanici-adi].github.io/yolo-grid-demo)
+[🎮 Canlı Demo'yu Deneyin]([https://[kullanici-adi].github.io/yolo-grid-demo](https://yolo-grid-demo-production.up.railway.app/))
 
 ## 🤝 Katkıda Bulunma
 
